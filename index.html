@@ -66,13 +66,13 @@
       introText.style.display = "none";
 
       title.innerHTML = `
-        <span class="normal-text fade-in">
+        <span class="normal-text">
           Sabía que dirías que sí jijiji
         </span>
       `;
 
       mainText.innerHTML = `
-        <span class="romantic-text fade-in heartbeat">
+        <span class="romantic-text heartbeat">
           Te quiero mucho 💕
         </span>
       `;
@@ -81,7 +81,7 @@
       lanzarDestellos();
     });
 
-    // ❤️ CORAZONES DE FONDO
+    // ❤️ CORAZONES ROJOS DE FONDO
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
