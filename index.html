@@ -18,13 +18,12 @@
       overflow: hidden;
     }
 
-    /* PANTALLA FULL REAL */
     .screen {
-      position: fixed;
-      inset: 0;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 20px;
     }
 
     /* CORAZONES DE FONDO */
@@ -47,7 +46,7 @@
       padding: 32px;
       border-radius: 24px;
       max-width: 420px;
-      width: calc(100% - 40px);
+      width: 100%;
       text-align: center;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
       animation: pulse 3s infinite;
@@ -69,36 +68,28 @@
     }
 
     .buttons {
-      margin-top: 26px;
-      position: relative;
-      height: 60px;
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
     }
 
     button {
-      padding: 12px 26px;
+      flex: 1;
+      padding: 14px;
       border: none;
       border-radius: 24px;
       font-size: 1em;
       cursor: pointer;
-      position: absolute;
-      transition: transform 0.3s ease;
-    }
-
-    button:active {
-      transform: none;
+      transition: all 0.3s ease;
     }
 
     .yes {
       background: #ff4d6d;
       color: white;
-      left: 0;
-      transform: scale(1);
     }
 
     .no {
       background: #ccc;
-      right: 0;
-      transform: scale(1);
     }
 
     /* CONFETI */
@@ -167,26 +158,30 @@
     const yesBtn = document.getElementById("yesBtn");
 
     let noScale = 1;
-    let yesScale = 1;
+    let yesGrow = 1;
 
-    function moveNo() {
-      const max = 140;
-      const x = Math.random() * max - max / 2;
+    noBtn.addEventListener("click", () => {
+      noScale -= 0.15;
+      yesGrow += 0.15;
 
-      noScale = Math.max(0.5, noScale - 0.1);
-      yesScale = Math.min(1.6, yesScale + 0.08);
+      if (noScale <= 0.4) {
+        noBtn.style.display = "none";
+        yesBtn.style.flex = "1 1 100%";
+        yesBtn.textContent = "Sí 💖💖💖";
+        return;
+      }
 
-      noBtn.style.transform = `translateX(${x}px) scale(${noScale})`;
-      yesBtn.style.transform = `scale(${yesScale})`;
-    }
-
-    noBtn.addEventListener("mouseenter", moveNo);
-    noBtn.addEventListener("touchstart", moveNo);
+      noBtn.style.transform = `scale(${noScale})`;
+      yesBtn.style.transform = `scale(${yesGrow})`;
+    });
 
     yesBtn.addEventListener("click", () => {
       document.getElementById("card").innerHTML = `
         <h1>💖 ¡SÍ! 💖</h1>
-        <p>Sabía que dirías que sí 😘<br>Te amo muchísimo</p>
+        <p>
+          Gracias por decir que sí 🥰<br>
+          Te amo muchísimo
+        </p>
       `;
       confetti();
       sparkles();
