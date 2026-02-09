@@ -1,60 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Para mi San Valentín 💘</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Para mi San Valentín 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-<div class="hearts"></div>
+  <!-- CORAZONES DE FONDO -->
+  <div id="hearts"></div>
 
-<div class="card">
+  <div class="card" id="card">
+    <h1 id="title">¿Quieres ser mi San Valentín? 💘</h1>
+    <p id="text">
+      Prometo risas, amor<br>
+      y muchos momentos juntos 💕
+    </p>
 
-<h1>¿Quieres ser mi San Valentín? 💘</h1>
-<p>Prometo risas, amor y muchos momentos juntos 💕</p>
+    <div class="buttons" id="buttons">
+      <button id="yesBtn">Sí 💖</button>
+      <button id="noBtn">No 🙈</button>
+    </div>
+  </div>
 
-<div class="buttons">
-<button id="yesBtn">Sí 💖</button>
-<button id="noBtn">No 🙈</button>
-</div>
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const buttons = document.getElementById("buttons");
+    const title = document.getElementById("title");
+    const text = document.getElementById("text");
 
-</div>
+    let yesGrow = 1;
+    let noShrink = 1;
 
-<script>
+    // 💔 BOTÓN NO
+    noBtn.addEventListener("click", () => {
+      yesGrow += 0.25;
+      noShrink -= 0.25;
 
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const buttonsContainer = document.querySelector(".buttons");
+      yesBtn.style.transform = `scaleX(${yesGrow})`;
+      noBtn.style.transform = `scale(${Math.max(noShrink, 0)})`;
 
-let yesScale = 1;
-let noScale = 1;
+      if (noShrink <= 0.3) {
+        noBtn.style.display = "none";
+        yesBtn.classList.add("full");
+        buttons.classList.add("single");
 
-noBtn.addEventListener("click", () => {
+        title.textContent = "Ya sabíamos que sí 😏💖";
+        text.textContent = "Gracias por elegirme, te amo ❤️";
+      }
+    });
 
-yesScale += 0.25;
-noScale -= 0.20;
+    // 💖 BOTÓN SÍ
+    yesBtn.addEventListener("click", () => {
+      lanzarConfeti();
+      lanzarDestellos();
 
-yesBtn.style.transform = `scale(${yesScale})`;
-noBtn.style.transform = `scale(${Math.max(noScale,0)})`;
+      title.textContent = "💖 ¡SÍ! 💖";
+      text.textContent = "Este San Valentín ya es perfecto contigo ✨";
+    });
 
-if(noScale <= 0.25){
-noBtn.style.display = "none";
-yesBtn.classList.add("full");
-}
+    // 🎉 CONFETI
+    function lanzarConfeti() {
+      for (let i = 0; i < 80; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background =
+          ["#ff4d6d", "#ffd166", "#cdb4db", "#a2d2ff"][Math.floor(Math.random() * 4)];
+        c.style.animationDuration = Math.random() * 2 + 2 + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+      }
+    }
 
-});
+    // ✨ DESTELLOS
+    function lanzarDestellos() {
+      for (let i = 0; i < 25; i++) {
+        const s = document.createElement("div");
+        s.className = "sparkle";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 1200);
+      }
+    }
 
-yesBtn.addEventListener("click", () => {
-
-document.body.classList.add("celebrate");
-
-});
-
-</script>
+    // 💗 CORAZONES FONDO
+    setInterval(() => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "💗";
+      h.style.left = Math.random() * 100 + "vw";
+      h.style.fontSize = Math.random() * 20 + 14 + "px";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
+    }, 300);
+  </script>
 
 </body>
 </html>
