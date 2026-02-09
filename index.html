@@ -9,6 +9,9 @@
 
 <body>
 
+  <!-- CONTENEDOR CORAZONES -->
+  <div id="hearts"></div>
+
   <div class="card" id="card">
     <h1 id="title">¿Quieres ser mi San Valentín? 💘</h1>
     <p id="text">
@@ -30,32 +33,27 @@
     const title = document.getElementById("title");
     const text = document.getElementById("text");
 
-    let yesGrow = 1;
-    let noShrink = 1;
+    let noClicks = 0;
 
-    // ❌ BOTÓN NO
+    // 💔 BOTÓN NO (se hace pequeño, Sí se hace más grande)
     noBtn.addEventListener("click", () => {
-      yesGrow += 0.15;
-      noShrink -= 0.25;
+      noClicks++;
 
-      yesBtn.style.flexGrow = yesGrow;
-      noBtn.style.transform = `scale(${Math.max(noShrink, 0)})`;
+      yesBtn.style.padding = `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
+      noBtn.style.transform = `scale(${1 - noClicks * 0.15})`;
 
-      if (noShrink <= 0.3) {
+      if (noClicks >= 4) {
         noBtn.style.display = "none";
-        buttons.classList.add("single");
+        yesBtn.style.width = "100%";
       }
     });
 
     // 💖 BOTÓN SÍ
     yesBtn.addEventListener("click", () => {
-      // quitar botones
       buttons.style.display = "none";
 
-      // reacción tarjeta
       card.classList.add("pulse");
 
-      // cambiar texto
       title.textContent = "💖 ¡SÍ! 💖";
       text.innerHTML = "Gracias por elegirme.<br>Este San Valentín ya es perfecto contigo ✨";
 
@@ -63,9 +61,20 @@
       lanzarDestellos();
     });
 
+    // 💗 CORAZONES DE FONDO
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 18 + 14 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 350);
+
     // 🎉 CONFETI
     function lanzarConfeti() {
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 70; i++) {
         const c = document.createElement("div");
         c.className = "confetti";
         c.style.left = Math.random() * 100 + "vw";
@@ -79,7 +88,7 @@
 
     // ✨ DESTELLOS
     function lanzarDestellos() {
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 22; i++) {
         const s = document.createElement("div");
         s.className = "sparkle";
         s.style.left = Math.random() * 100 + "vw";
