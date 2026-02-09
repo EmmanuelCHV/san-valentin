@@ -1,81 +1,136 @@
-/* Reset básico */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* Reset */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-/* Fondo */
-body {
-  min-height: 100vh;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+/* Fondo pantalla completa REAL */
+html, body{
+height:100%;
 }
 
-/* Tarjeta */
-.card {
-  background: white;
-  padding: 28px;
-  border-radius: 24px;
-  max-width: 420px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  animation: pulse 2.5s infinite;
+body{
+min-height:100dvh;
+font-family:Arial, sans-serif;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+
+/* Rosa más fuerte */
+background: linear-gradient(135deg,#ff6f91,#ff9a9e,#ffc3a0);
+background-size: 400% 400%;
+animation: gradientMove 12s ease infinite;
 }
 
-.card h1 {
-  color: #ff4d6d;
-  margin-bottom: 12px;
+/* Movimiento fondo */
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
-.card p {
-  margin-bottom: 22px;
-  font-size: 16px;
+
+/* TARJETA */
+.card{
+background:white;
+padding:28px;
+border-radius:24px;
+max-width:420px;
+width:90%;
+text-align:center;
+box-shadow:0 20px 40px rgba(0,0,0,0.18);
+z-index:2;
 }
 
-/* Botones */
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 14px;
+.card h1{
+color:#ff4d6d;
+margin-bottom:12px;
 }
 
-button {
-  border: none;
-  padding: 14px 24px;
-  font-size: 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.card p{
+margin-bottom:22px;
+font-size:16px;
 }
 
-#yesBtn {
-  background: #ff4d6d;
-  color: white;
+
+/* BOTONES */
+.buttons{
+display:flex;
+justify-content:center;
+gap:14px;
+position:relative;
+overflow:hidden;
 }
 
-#noBtn {
-  background: #ddd;
+button{
+border:none;
+padding:14px 26px;
+font-size:16px;
+border-radius:999px;
+cursor:pointer;
+transition:all 0.35s ease;
 }
 
-/* Palpitación */
-@keyframes pulse {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.03); }
-  100% { transform: scale(1); }
+#yesBtn{
+background:#ff4d6d;
+color:white;
 }
+
+#noBtn{
+background:#d9d9d9;
+}
+
+/* Cuando SI gana */
+#yesBtn.full{
+width:100%;
+transform:scale(1.2);
+}
+
+
+/* CORAZONES DE FONDO */
+.hearts{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+pointer-events:none;
+z-index:1;
+}
+
+.hearts::before,
+.hearts::after{
+content:"💖 💘 💕 💗 💓";
+position:absolute;
+font-size:24px;
+animation: floatHearts 12s linear infinite;
+opacity:0.5;
+}
+
+.hearts::after{
+left:50%;
+animation-delay:6s;
+}
+
+@keyframes floatHearts{
+0%{
+transform:translateY(100vh);
+}
+100%{
+transform:translateY(-120vh);
+}
+}
+
 
 /* Celebración */
-body.celebrate {
-  animation: bgMove 5s infinite alternate;
+body.celebrate .card{
+animation: pop 0.6s ease;
 }
 
-@keyframes bgMove {
-  0% { background-position: left; }
-  100% { background-position: right; }
+@keyframes pop{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
 }
