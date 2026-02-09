@@ -1,50 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Para mi San Valentín 💘</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Para mi San Valentín 💘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS externo -->
-  <link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 
-  <div class="background-effects"></div>
+<div class="hearts"></div>
 
-  <div class="card">
-    <h1>¿Quieres ser mi San Valentín? 💘</h1>
-    <p>Prometo risas, amor y muchos momentos juntos 💕</p>
+<div class="card">
 
-    <div class="buttons">
-      <button id="yesBtn">Sí 💖</button>
-      <button id="noBtn">No 🙈</button>
-    </div>
-  </div>
+<h1>¿Quieres ser mi San Valentín? 💘</h1>
+<p>Prometo risas, amor y muchos momentos juntos 💕</p>
 
-  <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+<div class="buttons">
+<button id="yesBtn">Sí 💖</button>
+<button id="noBtn">No 🙈</button>
+</div>
 
-    let scaleYes = 1;
-    let scaleNo = 1;
+</div>
 
-    noBtn.addEventListener("click", () => {
-      scaleYes += 0.15;
-      scaleNo -= 0.15;
+<script>
 
-      yesBtn.style.transform = `scale(${scaleYes})`;
-      noBtn.style.transform = `scale(${Math.max(scaleNo, 0)})`;
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const buttonsContainer = document.querySelector(".buttons");
 
-      if (scaleNo <= 0.2) {
-        noBtn.style.display = "none";
-      }
-    });
+let yesScale = 1;
+let noScale = 1;
 
-    yesBtn.addEventListener("click", () => {
-      document.body.classList.add("celebrate");
-    });
-  </script>
+noBtn.addEventListener("click", () => {
+
+yesScale += 0.25;
+noScale -= 0.20;
+
+yesBtn.style.transform = `scale(${yesScale})`;
+noBtn.style.transform = `scale(${Math.max(noScale,0)})`;
+
+if(noScale <= 0.25){
+noBtn.style.display = "none";
+yesBtn.classList.add("full");
+}
+
+});
+
+yesBtn.addEventListener("click", () => {
+
+document.body.classList.add("celebrate");
+
+});
+
+</script>
 
 </body>
 </html>
