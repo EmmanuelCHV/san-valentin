@@ -1,64 +1,61 @@
+/* RESET */
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  height: 100dvh;
-  width: 100vw;
-  background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+  margin: 0;
+  height: 100vh;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  justify-content: center;
   overflow: hidden;
 }
 
-/* TARJETA */
+/* CARD */
 .card {
   background: white;
-  padding: 28px;
-  border-radius: 24px;
+  padding: 30px 26px;
+  border-radius: 22px;
   max-width: 420px;
   width: 90%;
   text-align: center;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   z-index: 2;
 }
 
-.card.pulse {
-  animation: pulse 0.6s ease;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-
-h1 {
-  color: #ff4d6d;
+/* TEXTOS */
+#introText {
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
-p {
+.normal-text {
+  color: #222;
   font-size: 16px;
-  margin-bottom: 20px;
+}
+
+.romantic-text {
+  color: #ff4d6d;
+  font-size: 22px;
+  font-weight: bold;
 }
 
 /* BOTONES */
 .buttons {
   display: flex;
-  gap: 12px;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
 }
 
 button {
-  flex: 1;
   padding: 14px 22px;
+  font-size: 15px;
   border-radius: 30px;
   border: none;
-  font-size: 16px;
   cursor: pointer;
   color: white;
   transition: all 0.3s ease;
@@ -72,54 +69,7 @@ button {
   background: #aaa;
 }
 
-/* ❤️ CORAZONES ROJOS */
-.heart {
-  position: fixed;
-  bottom: -20px;
-  animation: float 6s linear forwards;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes float {
-  to {
-    transform: translateY(-110vh);
-    opacity: 0;
-  }
-}
-
-/* 🎉 CONFETI */
-.confetti {
-  position: fixed;
-  top: -10px;
-  width: 10px;
-  height: 14px;
-  animation: fall linear forwards;
-  z-index: 3;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(720deg);
-  }
-}
-
-/* ✨ DESTELLOS */
-.sparkle {
-  position: fixed;
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-  animation: sparkle 1.2s ease forwards;
-  z-index: 3;
-}
-
-@keyframes sparkle {
-  0% { transform: scale(0); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
-}
-
+/* ANIMACIONES */
 .fade-in {
   animation: fadeIn 0.8s ease forwards;
 }
@@ -145,3 +95,67 @@ button {
   40% { transform: scale(1); }
 }
 
+.pulse {
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* CORAZONES */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  animation: float 6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* CONFETI */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 14px;
+  top: -10px;
+  animation: confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* DESTELLOS */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 1.2s ease forwards;
+}
+
+@keyframes sparkle {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
