@@ -51,22 +51,17 @@ p {
 .buttons {
   display: flex;
   gap: 12px;
-  justify-content: center;
-}
-
-.buttons.single button {
-  flex: 1;
 }
 
 button {
-  padding: 14px 18px;
+  flex: 1;
+  padding: 14px 22px;
   border-radius: 30px;
   border: none;
   font-size: 16px;
   cursor: pointer;
   color: white;
   transition: all 0.3s ease;
-  flex: 1;
 }
 
 #yesBtn {
@@ -75,6 +70,22 @@ button {
 
 #noBtn {
   background: #aaa;
+}
+
+/* 💗 CORAZONES */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: float 6s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
 }
 
 /* 🎉 CONFETI */
@@ -100,7 +111,6 @@ button {
   height: 8px;
   background: white;
   border-radius: 50%;
-  opacity: 0.9;
   animation: sparkle 1.2s ease forwards;
   z-index: 3;
 }
