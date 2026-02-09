@@ -5,20 +5,35 @@
   <title>Para mi niña bonita 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Ajustes mínimos solo para el efecto final -->
+  <style>
+    .normal-text {
+      color: #222;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .romantic-text {
+      color: #ff4d6d;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
 
   <div class="card" id="card">
 
-    <!-- TEXTO SUPERIOR (SE OCULTA DESPUÉS) -->
+    <!-- TEXTO SUPERIOR INICIAL -->
     <p id="introText">
       Holaa mi corazón, quería preguntarte...
     </p>
 
     <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
 
-    <!-- TEXTO INFERIOR (APARECE DESPUÉS) -->
+    <!-- TEXTO DINÁMICO -->
     <p id="mainText"></p>
 
     <div class="buttons" id="buttons">
@@ -44,18 +59,14 @@
     noBtn.addEventListener("click", () => {
       noClicks++;
 
-      // crecimiento / reducción
       yesBtn.style.padding =
         `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
       noBtn.style.transform =
         `scale(${1 - noClicks * 0.18})`;
 
-      // cuando Sí domina
       if (noClicks === maxClicks) {
         noBtn.style.display = "none";
         yesBtn.style.width = "100%";
-
-        // OCULTAR TEXTO SUPERIOR
         introText.style.display = "none";
 
         title.textContent = "Creo que ya sabemos la respuesta 😏💖";
@@ -67,17 +78,27 @@
       buttons.style.display = "none";
       card.classList.add("pulse");
 
-      // OCULTAR TEXTO SUPERIOR
       introText.style.display = "none";
 
-      title.textContent = "💖 Sabía que dirías que sí jijiji 💖";
-      mainText.innerHTML = "Te quiero mucho 💕";
+      // TEXTO ARRIBA (NORMAL)
+      title.innerHTML = `
+        <span class="normal-text">
+          Sabía que dirías que sí jijiji
+        </span>
+      `;
+
+      // TEXTO ABAJO (ROMÁNTICO)
+      mainText.innerHTML = `
+        <span class="romantic-text">
+          Te quiero mucho 💕
+        </span>
+      `;
 
       lanzarConfeti();
       lanzarDestellos();
     });
 
-    // ❤️ CORAZONES ROJOS DE FONDO
+    // ❤️ CORAZONES DE FONDO
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -119,5 +140,3 @@
 
 </body>
 </html>
-
-
