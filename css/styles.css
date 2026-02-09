@@ -1,4 +1,3 @@
-/* RESET */
 * {
   box-sizing: border-box;
 }
@@ -6,7 +5,7 @@
 body {
   margin: 0;
   height: 100vh;
-  font-family: "Arial", sans-serif;
+  font-family: Arial, sans-serif;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   display: flex;
   align-items: center;
@@ -70,21 +69,6 @@ button {
 }
 
 /* ANIMACIONES */
-.fade-in {
-  animation: fadeIn 0.8s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .heartbeat {
   animation: heartbeat 1.4s ease-in-out infinite;
 }
@@ -114,10 +98,6 @@ button {
 }
 
 @keyframes float {
-  from {
-    transform: translateY(0);
-    opacity: 1;
-  }
   to {
     transform: translateY(-110vh);
     opacity: 0;
@@ -150,10 +130,6 @@ button {
 }
 
 @keyframes sparkle {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
   to {
     opacity: 0;
     transform: scale(2);
