@@ -4,14 +4,10 @@
   <meta charset="UTF-8">
   <title>Para mi San Valentín 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-
-  <!-- CORAZONES DE FONDO -->
-  <div id="hearts"></div>
 
   <div class="card" id="card">
     <h1 id="title">¿Quieres ser mi San Valentín? 💘</h1>
@@ -27,6 +23,7 @@
   </div>
 
   <script>
+    const card = document.getElementById("card");
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const buttons = document.getElementById("buttons");
@@ -36,31 +33,34 @@
     let yesGrow = 1;
     let noShrink = 1;
 
-    // 💔 BOTÓN NO
+    // ❌ BOTÓN NO
     noBtn.addEventListener("click", () => {
-      yesGrow += 0.25;
+      yesGrow += 0.15;
       noShrink -= 0.25;
 
-      yesBtn.style.transform = `scaleX(${yesGrow})`;
+      yesBtn.style.flexGrow = yesGrow;
       noBtn.style.transform = `scale(${Math.max(noShrink, 0)})`;
 
       if (noShrink <= 0.3) {
         noBtn.style.display = "none";
-        yesBtn.classList.add("full");
         buttons.classList.add("single");
-
-        title.textContent = "Ya sabíamos que sí 😏💖";
-        text.textContent = "Gracias por elegirme, te amo ❤️";
       }
     });
 
     // 💖 BOTÓN SÍ
     yesBtn.addEventListener("click", () => {
+      // quitar botones
+      buttons.style.display = "none";
+
+      // reacción tarjeta
+      card.classList.add("pulse");
+
+      // cambiar texto
+      title.textContent = "💖 ¡SÍ! 💖";
+      text.innerHTML = "Gracias por elegirme.<br>Este San Valentín ya es perfecto contigo ✨";
+
       lanzarConfeti();
       lanzarDestellos();
-
-      title.textContent = "💖 ¡SÍ! 💖";
-      text.textContent = "Este San Valentín ya es perfecto contigo ✨";
     });
 
     // 🎉 CONFETI
@@ -88,17 +88,6 @@
         setTimeout(() => s.remove(), 1200);
       }
     }
-
-    // 💗 CORAZONES FONDO
-    setInterval(() => {
-      const h = document.createElement("div");
-      h.className = "heart";
-      h.textContent = "💗";
-      h.style.left = Math.random() * 100 + "vw";
-      h.style.fontSize = Math.random() * 20 + 14 + "px";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 6000);
-    }, 300);
   </script>
 
 </body>
