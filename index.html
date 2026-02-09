@@ -11,14 +11,14 @@
 
   <div class="card" id="card">
 
-    <!-- TEXTO SUPERIOR (FIJO) -->
+    <!-- TEXTO SUPERIOR (SE OCULTA DESPUÉS) -->
     <p id="introText">
       Holaa mi corazón, quería preguntarte...
     </p>
 
     <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
 
-    <!-- TEXTO INFERIOR (DINÁMICO) -->
+    <!-- TEXTO INFERIOR (APARECE DESPUÉS) -->
     <p id="mainText"></p>
 
     <div class="buttons" id="buttons">
@@ -44,16 +44,19 @@
     noBtn.addEventListener("click", () => {
       noClicks++;
 
-      // crecimiento controlado
+      // crecimiento / reducción
       yesBtn.style.padding =
         `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
       noBtn.style.transform =
         `scale(${1 - noClicks * 0.18})`;
 
-      // cuando Sí ya domina
+      // cuando Sí domina
       if (noClicks === maxClicks) {
         noBtn.style.display = "none";
         yesBtn.style.width = "100%";
+
+        // OCULTAR TEXTO SUPERIOR
+        introText.style.display = "none";
 
         title.textContent = "Creo que ya sabemos la respuesta 😏💖";
         mainText.innerHTML =
@@ -65,6 +68,9 @@
     yesBtn.addEventListener("click", () => {
       buttons.style.display = "none";
       card.classList.add("pulse");
+
+      // OCULTAR TEXTO SUPERIOR
+      introText.style.display = "none";
 
       title.textContent = "💖 ¡SÍ! 💖";
       mainText.innerHTML =
