@@ -7,7 +7,7 @@
 body {
   height: 100dvh;
   width: 100vw;
-  background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+  background: linear-gradient(135deg, #ff1e56, #ff9a9e);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,7 +38,7 @@ body {
 }
 
 h1 {
-  color: #ff4d6d;
+  color: #ff1e56;
   margin-bottom: 10px;
 }
 
@@ -65,14 +65,14 @@ button {
 }
 
 #yesBtn {
-  background: #ff4d6d;
+  background: #ff1e56;
 }
 
 #noBtn {
   background: #aaa;
 }
 
-/* 💗 CORAZONES */
+/* ❤️ CORAZONES */
 .heart {
   position: fixed;
   bottom: -20px;
