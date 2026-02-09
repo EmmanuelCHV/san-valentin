@@ -18,19 +18,16 @@
       overflow: hidden;
     }
 
-    /* CONTENEDOR FULL REAL */
+    /* PANTALLA FULL REAL */
     .screen {
       position: fixed;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* CORAZONES FONDO */
+    /* CORAZONES DE FONDO */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -47,7 +44,7 @@
     /* TARJETA */
     .card {
       background: white;
-      padding: 30px;
+      padding: 32px;
       border-radius: 24px;
       max-width: 420px;
       width: calc(100% - 40px);
@@ -63,8 +60,8 @@
     }
 
     h1 {
-      color: #ff4d6d;
       margin-top: 0;
+      color: #ff4d6d;
     }
 
     p {
@@ -72,7 +69,7 @@
     }
 
     .buttons {
-      margin-top: 24px;
+      margin-top: 26px;
       position: relative;
       height: 60px;
     }
@@ -95,11 +92,13 @@
       background: #ff4d6d;
       color: white;
       left: 0;
+      transform: scale(1);
     }
 
     .no {
       background: #ccc;
       right: 0;
+      transform: scale(1);
     }
 
     /* CONFETI */
@@ -164,27 +163,31 @@
       setTimeout(() => heart.remove(), 7000);
     }, 400);
 
-    /* BOTÓN NO HUYE SIN CLICK */
     const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+
+    let noScale = 1;
+    let yesScale = 1;
+
     function moveNo() {
       const max = 140;
       const x = Math.random() * max - max / 2;
-      noBtn.style.transform = `translateX(${x}px)`;
+
+      noScale = Math.max(0.5, noScale - 0.1);
+      yesScale = Math.min(1.6, yesScale + 0.08);
+
+      noBtn.style.transform = `translateX(${x}px) scale(${noScale})`;
+      yesBtn.style.transform = `scale(${yesScale})`;
     }
+
     noBtn.addEventListener("mouseenter", moveNo);
     noBtn.addEventListener("touchstart", moveNo);
 
-    /* SÍ */
-    document.getElementById("yesBtn").addEventListener("click", () => {
-      if (navigator.vibrate) {
-        navigator.vibrate([40, 30, 40]);
-      }
-
+    yesBtn.addEventListener("click", () => {
       document.getElementById("card").innerHTML = `
         <h1>💖 ¡SÍ! 💖</h1>
-        <p>Te amo muchísimo 😘</p>
+        <p>Sabía que dirías que sí 😘<br>Te amo muchísimo</p>
       `;
-
       confetti();
       sparkles();
     });
