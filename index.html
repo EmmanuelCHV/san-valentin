@@ -1,142 +1,121 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Para mi niña bonita 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/styles.css">
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <!-- Ajustes mínimos solo para el efecto final -->
-  <style>
-    .normal-text {
-      color: #222;
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
+body {
+  height: 100dvh;
+  width: 100vw;
+  background: linear-gradient(135deg, #ff4d6d, #ff9a9e);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
 
-    .romantic-text {
-      color: #ff4d6d;
-      font-size: 22px;
-      font-weight: bold;
-    }
-  </style>
-</head>
+/* TARJETA */
+.card {
+  background: white;
+  padding: 28px;
+  border-radius: 24px;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  z-index: 2;
+}
 
-<body>
+.card.pulse {
+  animation: pulse 0.6s ease;
+}
 
-  <div class="card" id="card">
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
 
-    <!-- TEXTO SUPERIOR INICIAL -->
-    <p id="introText">
-      Holaa mi corazón, quería preguntarte...
-    </p>
+h1 {
+  color: #ff4d6d;
+  margin-bottom: 10px;
+}
 
-    <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
 
-    <!-- TEXTO DINÁMICO -->
-    <p id="mainText"></p>
+/* BOTONES */
+.buttons {
+  display: flex;
+  gap: 12px;
+}
 
-    <div class="buttons" id="buttons">
-      <button id="yesBtn">Sí 💖</button>
-      <button id="noBtn">No 🙈</button>
-    </div>
+button {
+  flex: 1;
+  padding: 14px 22px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  transition: all 0.3s ease;
+}
 
-  </div>
+#yesBtn {
+  background: #ff4d6d;
+}
 
-  <script>
-    const card = document.getElementById("card");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
-    const buttons = document.getElementById("buttons");
-    const title = document.getElementById("title");
-    const introText = document.getElementById("introText");
-    const mainText = document.getElementById("mainText");
+#noBtn {
+  background: #aaa;
+}
 
-    let noClicks = 0;
-    const maxClicks = 4;
+/* ❤️ CORAZONES ROJOS */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  animation: float 6s linear forwards;
+  pointer-events: none;
+  z-index: 1;
+}
 
-    // ❌ BOTÓN NO
-    noBtn.addEventListener("click", () => {
-      noClicks++;
+@keyframes float {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
 
-      yesBtn.style.padding =
-        `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
-      noBtn.style.transform =
-        `scale(${1 - noClicks * 0.18})`;
+/* 🎉 CONFETI */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 14px;
+  animation: fall linear forwards;
+  z-index: 3;
+}
 
-      if (noClicks === maxClicks) {
-        noBtn.style.display = "none";
-        yesBtn.style.width = "100%";
-        introText.style.display = "none";
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
 
-        title.textContent = "Creo que ya sabemos la respuesta 😏💖";
-      }
-    });
+/* ✨ DESTELLOS */
+.sparkle {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkle 1.2s ease forwards;
+  z-index: 3;
+}
 
-    // 💖 BOTÓN SÍ
-    yesBtn.addEventListener("click", () => {
-      buttons.style.display = "none";
-      card.classList.add("pulse");
-
-      introText.style.display = "none";
-
-      // TEXTO ARRIBA (NORMAL)
-      title.innerHTML = `
-        <span class="normal-text">
-          Sabía que dirías que sí jijiji
-        </span>
-      `;
-
-      // TEXTO ABAJO (ROMÁNTICO)
-      mainText.innerHTML = `
-        <span class="romantic-text">
-          Te quiero mucho 💕
-        </span>
-      `;
-
-      lanzarConfeti();
-      lanzarDestellos();
-    });
-
-    // ❤️ CORAZONES DE FONDO
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 18 + 14 + "px";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 6000);
-    }, 320);
-
-    // 🎉 CONFETI
-    function lanzarConfeti() {
-      for (let i = 0; i < 70; i++) {
-        const c = document.createElement("div");
-        c.className = "confetti";
-        c.style.left = Math.random() * 100 + "vw";
-        c.style.background =
-          ["#ff4d6d", "#ff9a9e", "#ffd166", "#cdb4db"]
-          [Math.floor(Math.random() * 4)];
-        c.style.animationDuration =
-          Math.random() * 2 + 2 + "s";
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 4000);
-      }
-    }
-
-    // ✨ DESTELLOS
-    function lanzarDestellos() {
-      for (let i = 0; i < 22; i++) {
-        const s = document.createElement("div");
-        s.className = "sparkle";
-        s.style.left = Math.random() * 100 + "vw";
-        s.style.top = Math.random() * 100 + "vh";
-        document.body.appendChild(s);
-        setTimeout(() => s.remove(), 1200);
-      }
-    }
-  </script>
-
-</body>
-</html>
+@keyframes sparkle {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
