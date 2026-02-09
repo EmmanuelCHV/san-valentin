@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para mi San Valentín ❤️</title>
+  <title>Para mi San Valentín 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -10,14 +10,14 @@
 <body>
 
   <div class="card" id="card">
-    <h1 id="title">¿Quieres ser mi San Valentín? ❤️</h1>
+    <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
     <p id="text">
       Prometo risas, amor<br>
       y muchos momentos juntos 💕
     </p>
 
     <div class="buttons" id="buttons">
-      <button id="yesBtn">Sí ❤️</button>
+      <button id="yesBtn">Sí 💖</button>
       <button id="noBtn">No 🙈</button>
     </div>
   </div>
@@ -37,20 +37,20 @@
     noBtn.addEventListener("click", () => {
       noClicks++;
 
-      // crecimiento natural
+      // crecimiento controlado
       yesBtn.style.padding =
-        `${14 + noClicks * 2}px ${22 + noClicks * 8}px`;
+        `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
       noBtn.style.transform =
         `scale(${1 - noClicks * 0.18})`;
 
-      // cuando Sí ya es dominante
+      // cuando Sí ya domina
       if (noClicks === maxClicks) {
         noBtn.style.display = "none";
         yesBtn.style.width = "100%";
 
-        title.textContent = "Creo que ya sabemos la respuesta 😏❤️";
+        title.textContent = "Creo que ya sabemos la respuesta 😏💖";
         text.innerHTML =
-          "No importa cuántas veces lo pienses,<br>yo siempre te elegiría 💖";
+          "No importa cuántas veces lo pienses,<br>yo siempre te elegiría 💕";
       }
     });
 
@@ -79,14 +79,14 @@
       setTimeout(() => heart.remove(), 6000);
     }, 320);
 
-    // 🎉 CONFETI
+    // 🎉 CONFETI (MISMO DE ANTES)
     function lanzarConfeti() {
       for (let i = 0; i < 70; i++) {
         const c = document.createElement("div");
         c.className = "confetti";
         c.style.left = Math.random() * 100 + "vw";
         c.style.background =
-          ["#ff1e56", "#ff4d6d", "#ffd166", "#ff9a9e"]
+          ["#ff4d6d", "#ff9a9e", "#ffd166", "#cdb4db"]
           [Math.floor(Math.random() * 4)];
         c.style.animationDuration =
           Math.random() * 2 + 2 + "s";
