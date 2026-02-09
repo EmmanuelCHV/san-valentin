@@ -26,7 +26,7 @@
       padding: 20px;
     }
 
-    /* CORAZONES DE FONDO */
+    /* CORAZONES */
     .heart {
       position: fixed;
       bottom: -20px;
@@ -54,7 +54,7 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
+      0%,100% { transform: scale(1); }
       50% { transform: scale(1.03); }
     }
 
@@ -71,6 +71,7 @@
       margin-top: 28px;
       display: flex;
       gap: 14px;
+      overflow: hidden; /* 👈 CLAVE */
     }
 
     button {
@@ -81,15 +82,18 @@
       font-size: 1em;
       cursor: pointer;
       transition: all 0.3s ease;
+      white-space: nowrap;
     }
 
     .yes {
       background: #ff4d6d;
       color: white;
+      flex-grow: 1;
     }
 
     .no {
       background: #ccc;
+      flex-grow: 1;
     }
 
     /* CONFETI */
@@ -162,17 +166,17 @@
 
     noBtn.addEventListener("click", () => {
       noScale -= 0.15;
-      yesGrow += 0.15;
+      yesGrow += 0.4;
 
       if (noScale <= 0.4) {
         noBtn.style.display = "none";
-        yesBtn.style.flex = "1 1 100%";
+        yesBtn.style.flexGrow = 10;
         yesBtn.textContent = "Sí 💖💖💖";
         return;
       }
 
       noBtn.style.transform = `scale(${noScale})`;
-      yesBtn.style.transform = `scale(${yesGrow})`;
+      yesBtn.style.flexGrow = yesGrow;
     });
 
     yesBtn.addEventListener("click", () => {
