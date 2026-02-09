@@ -2,25 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Para mi niña bonita 💖</title>
+  <title>Para mi San Valentín ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-  <!-- CONTENEDOR CORAZONES -->
-  <div id="hearts"></div>
-
   <div class="card" id="card">
-    <h1 id="title">¿Quieres ser mi San Valentín? 💘</h1>
+    <h1 id="title">¿Quieres ser mi San Valentín? ❤️</h1>
     <p id="text">
       Prometo risas, amor<br>
       y muchos momentos juntos 💕
     </p>
 
     <div class="buttons" id="buttons">
-      <button id="yesBtn">Sí 💖</button>
+      <button id="yesBtn">Sí ❤️</button>
       <button id="noBtn">No 🙈</button>
     </div>
   </div>
@@ -34,17 +31,26 @@
     const text = document.getElementById("text");
 
     let noClicks = 0;
+    const maxClicks = 4;
 
-    // 💔 BOTÓN NO (se hace pequeño, Sí se hace más grande)
+    // ❌ BOTÓN NO
     noBtn.addEventListener("click", () => {
       noClicks++;
 
-      yesBtn.style.padding = `${14 + noClicks * 2}px ${22 + noClicks * 6}px`;
-      noBtn.style.transform = `scale(${1 - noClicks * 0.15})`;
+      // crecimiento natural
+      yesBtn.style.padding =
+        `${14 + noClicks * 2}px ${22 + noClicks * 8}px`;
+      noBtn.style.transform =
+        `scale(${1 - noClicks * 0.18})`;
 
-      if (noClicks >= 4) {
+      // cuando Sí ya es dominante
+      if (noClicks === maxClicks) {
         noBtn.style.display = "none";
         yesBtn.style.width = "100%";
+
+        title.textContent = "Creo que ya sabemos la respuesta 😏❤️";
+        text.innerHTML =
+          "No importa cuántas veces lo pienses,<br>yo siempre te elegiría 💖";
       }
     });
 
@@ -55,22 +61,23 @@
       card.classList.add("pulse");
 
       title.textContent = "💖 ¡SÍ! 💖";
-      text.innerHTML = "Gracias por elegirme.<br>Este San Valentín ya es perfecto contigo ✨";
+      text.innerHTML =
+        "Gracias por elegirme.<br>Este San Valentín ya es perfecto contigo ✨";
 
       lanzarConfeti();
       lanzarDestellos();
     });
 
-    // 💗 CORAZONES DE FONDO
+    // ❤️ CORAZONES ROJOS DE FONDO
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.textContent = "💗";
+      heart.textContent = "❤️";
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = Math.random() * 18 + 14 + "px";
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
-    }, 350);
+    }, 320);
 
     // 🎉 CONFETI
     function lanzarConfeti() {
@@ -79,8 +86,10 @@
         c.className = "confetti";
         c.style.left = Math.random() * 100 + "vw";
         c.style.background =
-          ["#ff4d6d", "#ffd166", "#cdb4db", "#a2d2ff"][Math.floor(Math.random() * 4)];
-        c.style.animationDuration = Math.random() * 2 + 2 + "s";
+          ["#ff1e56", "#ff4d6d", "#ffd166", "#ff9a9e"]
+          [Math.floor(Math.random() * 4)];
+        c.style.animationDuration =
+          Math.random() * 2 + 2 + "s";
         document.body.appendChild(c);
         setTimeout(() => c.remove(), 4000);
       }
@@ -101,4 +110,3 @@
 
 </body>
 </html>
-
