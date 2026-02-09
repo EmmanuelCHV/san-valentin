@@ -10,17 +10,22 @@
 <body>
 
   <div class="card" id="card">
-    <p id="text">Holaa mi corazón, Queria preguntarte...
-    <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
-    <p id="text">
-      <br>
-     
+
+    <!-- TEXTO SUPERIOR (FIJO) -->
+    <p id="introText">
+      Holaa mi corazón, quería preguntarte...
     </p>
+
+    <h1 id="title">¿Quieres ser mi San Valentín? 💖</h1>
+
+    <!-- TEXTO INFERIOR (DINÁMICO) -->
+    <p id="mainText"></p>
 
     <div class="buttons" id="buttons">
       <button id="yesBtn">Sí 💖</button>
       <button id="noBtn">No 🙈</button>
     </div>
+
   </div>
 
   <script>
@@ -29,7 +34,8 @@
     const noBtn = document.getElementById("noBtn");
     const buttons = document.getElementById("buttons");
     const title = document.getElementById("title");
-    const text = document.getElementById("text");
+    const introText = document.getElementById("introText");
+    const mainText = document.getElementById("mainText");
 
     let noClicks = 0;
     const maxClicks = 4;
@@ -50,7 +56,7 @@
         yesBtn.style.width = "100%";
 
         title.textContent = "Creo que ya sabemos la respuesta 😏💖";
-        text.innerHTML =
+        mainText.innerHTML =
           "No importa cuántas veces lo pienses,<br>yo siempre te elegiría 💕";
       }
     });
@@ -58,12 +64,11 @@
     // 💖 BOTÓN SÍ
     yesBtn.addEventListener("click", () => {
       buttons.style.display = "none";
-
       card.classList.add("pulse");
 
       title.textContent = "💖 ¡SÍ! 💖";
-      text.innerHTML =
-        "Gracias, sabia que dirias que si.<br>Te quiero mucho";
+      mainText.innerHTML =
+        "Gracias, sabía que dirías que sí.<br>Te quiero mucho 💕";
 
       lanzarConfeti();
       lanzarDestellos();
@@ -80,7 +85,7 @@
       setTimeout(() => heart.remove(), 6000);
     }, 320);
 
-    // 🎉 CONFETI (MISMO DE ANTES)
+    // 🎉 CONFETI
     function lanzarConfeti() {
       for (let i = 0; i < 70; i++) {
         const c = document.createElement("div");
@@ -111,5 +116,3 @@
 
 </body>
 </html>
-
-
